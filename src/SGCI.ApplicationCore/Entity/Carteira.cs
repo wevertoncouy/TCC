@@ -10,6 +10,8 @@ namespace SGCI.ApplicationCore.Entity
         public Carteira()
         {
 
+
+
         }
 
         public int CarteiraId { get; set; }
