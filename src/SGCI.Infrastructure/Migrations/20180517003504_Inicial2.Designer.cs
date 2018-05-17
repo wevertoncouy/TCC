@@ -5,14 +5,15 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Storage.Internal;
+using SGCI.ApplicationCore.Entity;
 using SGCI.Infrastructure.Data;
 using System;
 
 namespace SGCI.Infrastructure.Migrations
 {
     [DbContext(typeof(GestaoCarteiraContext))]
-    [Migration("20180422182519_inicial")]
-    partial class inicial
+    [Migration("20180517003504_Inicial2")]
+    partial class Inicial2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -50,7 +51,9 @@ namespace SGCI.Infrastructure.Migrations
                     b.Property<int>("CategoriaId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Descriao");
+                    b.Property<string>("Descriao")
+                        .IsRequired()
+                        .HasColumnType("varchar(150)");
 
                     b.HasKey("CategoriaId");
 
@@ -86,9 +89,11 @@ namespace SGCI.Infrastructure.Migrations
 
                     b.Property<int>("ContaId");
 
-                    b.Property<string>("Descricao");
+                    b.Property<string>("Descricao")
+                        .IsRequired()
+                        .HasColumnType("varchar(150)");
 
-                    b.Property<decimal>("Resultado");
+                    b.Property<int>("StatusLancamento");
 
                     b.Property<decimal>("Valor");
 
@@ -98,7 +103,7 @@ namespace SGCI.Infrastructure.Migrations
 
                     b.HasIndex("ContaId");
 
-                    b.ToTable("Lancamentos");
+                    b.ToTable("Lancamento");
                 });
 
             modelBuilder.Entity("SGCI.ApplicationCore.Entity.Carteira", b =>

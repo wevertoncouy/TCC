@@ -29,7 +29,7 @@ namespace SGCI.ApplicationCore.Entity
         [ForeignKey("Conta")]
         public int ContaId { get; set; }
 
-        public  Conta Conta { get; set; }  // propriedade de navegaçao
+        public  Conta Conta { get; set; } 
         
     } 
 }

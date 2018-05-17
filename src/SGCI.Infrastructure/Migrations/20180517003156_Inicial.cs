@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace SGCI.Infrastructure.Migrations
 {
-    public partial class inicial : Migration
+    public partial class Inicial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -15,7 +15,7 @@ namespace SGCI.Infrastructure.Migrations
                 {
                     CategoriaId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Descriao = table.Column<string>(nullable: true)
+                    Descriao = table.Column<string>(type: "varchar(150)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -62,28 +62,29 @@ namespace SGCI.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Lancamentos",
+                name: "Lancamento",
                 columns: table => new
                 {
                     LancamentoId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     CategoriaId = table.Column<int>(nullable: false),
                     ContaId = table.Column<int>(nullable: false),
-                    Descricao = table.Column<string>(nullable: true),
-                    Resultado = table.Column<decimal>(nullable: false),
+                    Descricao = table.Column<string>(type: "varchar(150)", nullable: false),
+                    StatusLancamento = table.Column<int>(nullable: false),
+                    StatusLancamentoId = table.Column<int>(nullable: false),
                     Valor = table.Column<decimal>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Lancamentos", x => x.LancamentoId);
+                    table.PrimaryKey("PK_Lancamento", x => x.LancamentoId);
                     table.ForeignKey(
-                        name: "FK_Lancamentos_Categoria_CategoriaId",
+                        name: "FK_Lancamento_Categoria_CategoriaId",
                         column: x => x.CategoriaId,
                         principalTable: "Categoria",
                         principalColumn: "CategoriaId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Lancamentos_Conta_ContaId",
+                        name: "FK_Lancamento_Conta_ContaId",
                         column: x => x.ContaId,
                         principalTable: "Conta",
                         principalColumn: "ContaId",
@@ -96,13 +97,13 @@ namespace SGCI.Infrastructure.Migrations
                 column: "ContaId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Lancamentos_CategoriaId",
-                table: "Lancamentos",
+                name: "IX_Lancamento_CategoriaId",
+                table: "Lancamento",
                 column: "CategoriaId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Lancamentos_ContaId",
-                table: "Lancamentos",
+                name: "IX_Lancamento_ContaId",
+                table: "Lancamento",
                 column: "ContaId");
         }
 
@@ -112,7 +113,7 @@ namespace SGCI.Infrastructure.Migrations
                 name: "Carteira");
 
             migrationBuilder.DropTable(
-                name: "Lancamentos");
+                name: "Lancamento");
 
             migrationBuilder.DropTable(
                 name: "Categoria");

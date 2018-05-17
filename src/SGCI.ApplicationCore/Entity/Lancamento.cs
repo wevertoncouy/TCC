@@ -28,13 +28,13 @@ namespace SGCI.ApplicationCore.Entity
 
         public decimal Valor { get; set; }
 
-        public decimal Resultado { get; set; }
-
         public string Descricao { get; set; }
 
         public Categoria Categoria { get; set; }
 
         public Conta Conta { get; set; }
+
+        public StatusLancamento StatusLancamento { get; set; }
 
 
     

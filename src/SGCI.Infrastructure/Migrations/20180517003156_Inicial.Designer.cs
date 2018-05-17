@@ -12,9 +12,10 @@ using System;
 namespace SGCI.Infrastructure.Migrations
 {
     [DbContext(typeof(GestaoCarteiraContext))]
-    partial class GestaoCarteiraContextModelSnapshot : ModelSnapshot
+    [Migration("20180517003156_Inicial")]
+    partial class Inicial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -93,6 +94,8 @@ namespace SGCI.Infrastructure.Migrations
                         .HasColumnType("varchar(150)");
 
                     b.Property<int>("StatusLancamento");
+
+                    b.Property<int>("StatusLancamentoId");
 
                     b.Property<decimal>("Valor");
 
